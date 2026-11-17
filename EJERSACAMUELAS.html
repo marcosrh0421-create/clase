@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <script>
+
+        let tableroInterno = []
+        let tableroVisible = []
+
+        for (let i = 0; i < 10; i++) {
+            tableroInterno.push(0)
+            tableroVisible.push("🦷")
+        }
+        let numDanados = Math.floor(Math.random() * 5) + 1
+        let colocados = 0
+
+        while (colocados < numDanados) {
+            let pos = Math.floor(Math.random() * 10)
+            if (tableroInterno[pos] === 0) {
+                tableroInterno[pos] = 1
+                colocados++
+            }
+        }
+
+        console.log(tableroInterno)
+
+        let totalSanos = 10 - numDanados
+        let sanosDescubiertos = 0
+        let turno = 1
+        let terminado = false
+
+        while (terminado === false) {
+            console.log(tableroVisible);
+            let pos = parseInt(prompt("Jugador " + turno + ", elige un diente (0-9):"))
+            
+            if (isNaN(pos) || pos < 0 || pos > 9 || tableroVisible[pos] !== "🦷") {
+                console.log("Elección no valida, veulve a elegir.");
+                
+            }
+
+            else if (tableroInterno[pos] === 1) {
+                tableroVisible[pos] = "💥"
+                console.log(tableroVisible);
+                console.log("¡Diente dañado! Pierde el jugador " + turno);
+                terminado = true
+                
+            }
+        }
+    
+
+    </script>
+</body>
+
+</html>
